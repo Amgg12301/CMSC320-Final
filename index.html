@@ -29352,8 +29352,7 @@ z
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Upon creating the plots of the chosen factors versus the percentage of people with high school and bachelor's academic achievement for the US states as a whole and for Maryland's counties, we can analyze the scatter plots and regression lines. The plots of median household incomes and computers versus graduates are somewhat similar between both the United States and Maryland plots. However, the persons per households graph does not show as strong of a correlation between Maryland counties and the United States. More thorough analysis of the regression lines seems to demonstrate that there is in fact a correlation between median household income and percentage of households with computers versus graduates. Counties with a higher median household income and a higher percent of households that own computers have a higher rate of academic achievement. On the other hand, the correlation for persons per household seems comparatively weaker and is does not show on the US state map.</p>
-
+<p>Given that these plots now contain regression lines, we can clearly see a well-fitted, positive, and linear relationship for median household income and access to a computer versus education achievement. In addition, the regression line displayed in the persons per household plot seems to a lot of data not surrounding the line itself, showing that its linear relationship might be far weaker when compared to the other household factors. Hence, the same trends seen with the earlier states plots are also seen in these Maryland counties plots, suggesting that there might be some household factors that do significantly impact educational achievement in a linear fashion, where median household income and access to a computer might be some of them while persons per household might not.</p>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -29363,7 +29362,7 @@ z
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>The goal for hypothesis testing is to determine the strength of the fit of each linear regression relationship by using statsmodels. We use ordinary least squares regression, which is one of the simplest and most common methods. After performing hypothesis testing on each household factor, we'll be able to determine if there is a linear relationship between each household factor and educational achievement.</p>
+<p>In order to further analyze and verify the existence and strength of the linear relationships for the three household factors, we can use hypothesis testing and machine learning. The goal for hypothesis testing is to determine the strength of the fit of each linear regression relationship by using statsmodels. We use ordinary least squares regression, which is one of the simplest and most common methods. After performing hypothesis testing on each household factor, we'll be able to determine if there is a linear relationship between each household factor and educational achievement.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -29661,13 +29660,13 @@ z
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>The R-squared value for the median household income relationship is 0.706, for the access to a computer relationship is 0.711, and for the persons per household relationship is 0.197. This means that the median household income and access to a omputer relationships were fairly strong relationships, while the persons per household relationship was a far weaker relationship.</p>
-<p>From the hypothesis testing, we have sufficient evidence to reject the null hypotheses of no relationship between median household income and access to a computer and combined graduation rates, given the p-values are less than our significance level of 0.05. However, we cannot reject the null hypothesis of no relationship between persons per household and combined graduation rates, given one of the p-values is greater than the significance level of 0.05. In order to further validate our results, we can create and fit linear regression models and compare their R-squared values to the ones seen in hypothesis testing.</p>
+<p>From the hypothesis testing, we have sufficient evidence to reject the null hypotheses of no relationship between median household income and access to a computer and combined graduation rates, given the p-values are less than our significance level of 0.05. However, we cannot reject the null hypothesis of no relationship between persons per household and combined graduation rates, given one of the p-values is greater than the significance level of 0.05.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>We will now create, fit, and test machine learning models on each household factor against the combined graduation rates using linear regression.</p>
+<p>In order to further validate our results, we can create and fit linear regression models and compare their R-squared values to the ones seen in hypothesis testing. We will now create, fit, and test machine learning models on each household factor against the combined graduation rates using linear regression.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -29820,7 +29819,7 @@ z
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>After creating, fitting, and testing our machine learning models for each of the three household factors, we see similar results to the ones seen in hypothesis testing. The R-squared value for the testing median household income relationship is 0.655, for the access to a computer relationship is 0.670, and for the persons per household relationship is 0.155. These R-squared values are fairly similar to the ones retrieved from hypothesis testing and resemble the same overall conclusion that there is a significant relationship between median household income and educational achievement and access to a computer and educational achievement, while there's not enough significant evidence to say the same for persons per household and educational achievement</p>
+<p>After creating, fitting, and testing our machine learning models for each of the three household factors, we see similar results to the ones seen in hypothesis testing. The R-squared value for the testing median household income relationship is 0.655, for the access to a computer relationship is 0.670, and for the persons per household relationship is 0.155. These R-squared values are fairly similar to the ones retrieved from hypothesis testing and resemble the same overall conclusion that there is a significant relationship between median household income and educational achievement and access to a computer and educational achievement, while there's not enough significant evidence to say the same for persons per household and educational achievement.</p>
 
 </div>
 </div>
