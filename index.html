@@ -14325,7 +14325,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>The first part of the project is to tackle the data collection from the aforementioned source. Beginning with reading in the data into our data frame, the next step is to clean up the data and create a new data frame that includes only the specific factors that we will be analyzing in this project instead of having an unnecessarily large data frame with unneeded information. We will be looking at data specifically from 2017 as it was the most recent year that the dataset had values for all variables.</p>
+<p>The first part of the project is to tackle the data collection from the aforementioned source. First, we'll read in the data from the csv into our dataframe using Pandas's function read_csv(). The next step is to clean up the data and create a new dataframe that includes only the specific factors that we will be analyzing in this project instead of having an unnecessarily large data frame with a lot of unneeded information. We will be looking at data specifically from 2017 as it was the most recent year that the dataset had values for all variables.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -15196,7 +15196,7 @@ False
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>The next step in the process is to begin the analysis and visualization process. First, we take the three household factors of median household income, percentage of computers, and people per household and plot them against the combined percentage of high school and bachelors degree graduation rates to try to spot a correlation between the chosen factors and education achievement.</p>
+<p>The next step in the process is to begin the analysis and visualization process. We want to see if we can identify any relationships between each of the three household factors and educational achievement through various scatter plots. To start off, we take the three household factors of median household income, percentage of computers, and people per household and plot them against the combined percentage of high school and bachelors degree graduation rates to try to spot a correlation between the chosen factors and education achievement.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -15205,24 +15205,23 @@ False
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># plotting the median household income vs the graduates for each of the US states</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># get list of states</span>
 <span class="n">states</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 
 <span class="c1"># create the scatter plot</span>
-<span class="c1"># get average of factors for each state to plot</span>
-<span class="c1"># plot each state and annotate accordinly on plot</span>
+<span class="c1"># get average of factors for each state</span>
+<span class="c1"># plot each state&#39;s averages and annotate accordingly</span>
 <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">states</span><span class="p">:</span>
     <span class="n">average_income</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">state</span><span class="p">][</span><span class="s1">&#39;median_household_income_2017&#39;</span><span class="p">]</span>
     <span class="n">average_income</span> <span class="o">=</span> <span class="n">average_income</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">average_income</span><span class="p">)</span>
 
     <span class="n">average_education</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">state</span><span class="p">][</span><span class="s1">&#39;combined_hs_bachelors_2017&#39;</span><span class="p">]</span>
     <span class="n">average_education</span> <span class="o">=</span> <span class="n">average_education</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">average_education</span><span class="p">)</span>
-
     <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">average_income</span><span class="p">,</span> <span class="n">average_education</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="p">(</span><span class="n">average_income</span><span class="p">,</span> <span class="n">average_education</span><span class="p">))</span>
 
-<span class="c1"># set up the plot detail information    </span>
+<span class="c1"># plot details   </span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Median Household Income vs. Average Percentage of High School &amp; Bachelors Graduates for each U.S. State in 2017&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Median Household Income&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Percentage of High School &amp; Bachelors Graduates&#39;</span><span class="p">)</span>
@@ -23521,7 +23520,7 @@ z
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>It's clear that there is a positive, linear relationship for median household income and access to a computer between educational achievement. The same cannot be necessarily said about persons per household though. In order to visualize a linear relationship for each of these three factors in more depth, we look specifically at the state of Maryland. We repeat the same process used in the last three graphs, except this time including a generated linear regression line and plotting the data for each county in Maryland. </p>
+<p>It's clear that there is a positive, linear relationship for median household income and access to a computer between educational achievement. The same cannot be necessarily said about persons per household though. In order to visualize a linear relationship for each of these three factors in more depth, we look specifically at the state of Maryland to see if the trend nationwide is also resembled within a specific state. We repeat the same process used in the last three graphs, except this time including a generated linear regression line and plotting the data for each county in Maryland. The generated linear regression line for each plot will now give us a better idea of the linear relationship for the data.</p>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
@@ -23531,7 +23530,7 @@ z
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
 
-<span class="c1"># plot household factor and educational achievement data</span>
+<span class="c1"># get data for Maryland specifically and plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 <span class="n">state</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="s1">&#39;Maryland&#39;</span><span class="p">]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;median_household_income_2017&#39;</span><span class="p">],</span> <span class="n">state</span><span class="p">[</span><span class="s1">&#39;combined_hs_bachelors_2017&#39;</span><span class="p">])</span>
@@ -29362,7 +29361,7 @@ z
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>In order to further analyze and verify the existence and strength of the linear relationships for the three household factors, we can use hypothesis testing and machine learning. The goal for hypothesis testing is to determine the strength of the fit of each linear regression relationship by using statsmodels. We use ordinary least squares regression, which is one of the simplest and most common methods. After performing hypothesis testing on each household factor, we'll be able to determine if there is a linear relationship between each household factor and educational achievement.</p>
+<p>In order to further analyze the existence and strength of the linear relationships for each of the three household factors vs. educational achievement, we can use hypothesis testing and machine learning. The goal for hypothesis testing is to determine the strength of the fit of each linear regression relationship by using statsmodels. We use ordinary least squares regression, which is one of the simplest and most common methods for estimating unknown parameters in a linear regression model. After performing hypothesis testing on each household factor, we'll be able to determine if there is a linear relationship between each household factor and educational achievement.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -29378,6 +29377,7 @@ z
 <span class="n">x</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="s1">&#39;median_household_income_2017&#39;</span><span class="p">]</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
+<span class="c1"># fit data to model and get results</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
@@ -29659,14 +29659,14 @@ z
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>The R-squared value for the median household income relationship is 0.706, for the access to a computer relationship is 0.711, and for the persons per household relationship is 0.197. This means that the median household income and access to a omputer relationships were fairly strong relationships, while the persons per household relationship was a far weaker relationship.</p>
+<p>R-squared values represent the strength of a relationship and how close the data is to the fitted regression line on a scale from 0.0 to 1.0, where 1.0 means that the data perfectly fits the regression line. This value is a good indicator for us to determine if a strong linear relationship does exist between each of the household factors and educational achievement. The R-squared value for the median household income relationship is 0.706, for the access to a computer relationship is 0.711, and for the persons per household relationship is 0.197. This means that the median household income and access to a omputer relationships were fairly strong relationships, while the persons per household relationship was a far weaker relationship.</p>
 <p>From the hypothesis testing, we have sufficient evidence to reject the null hypotheses of no relationship between median household income and access to a computer and combined graduation rates, given the p-values are less than our significance level of 0.05. However, we cannot reject the null hypothesis of no relationship between persons per household and combined graduation rates, given one of the p-values is greater than the significance level of 0.05.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>In order to further validate our results, we can create and fit linear regression models and compare their R-squared values to the ones seen in hypothesis testing. We will now create, fit, and test machine learning models on each household factor against the combined graduation rates using linear regression.</p>
+<p>In order to further validate our results, we can use machine learning, which are algorithms that learn about data by being fed more data and provide us with detailed insights about the data as it learns. Linear regression is a specific algorithm within machine learning that takes in two sets of data, the predictors and actual values, minimizes the loss between the predicted and actual values, and produces an equation that allows for us to highly accurately predict values on new data. We can create and fit linear regression models using machine learning and compare their R-squared values to the ones seen in hypothesis testing. We will now create, fit, and test machine learning models on each household factor against the combined graduation rates using linear regression.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -29681,16 +29681,20 @@ z
 <span class="c1"># create linear regression test to determine the strength of the fit compared to the previous hypothesis testing</span>
 <span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
 
+<span class="c1"># split data into training and testing datasets</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;median_household_income_2017&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;combined_hs_bachelors_2017&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+
+<span class="c1"># fit the data to model</span>
 <span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
-<span class="n">y_train_tree</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">y_test_tree</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="c1"># get predictions</span>
+<span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">y_test_pred</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
 <span class="c1"># get r-squared values for training and testing datasets</span>
-<span class="n">acc_train_tree</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="n">acc_test_tree</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="n">acc_train_tree</span><span class="p">,</span> <span class="n">acc_test_tree</span>
+<span class="n">train_tree</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">test_tree</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">train_tree</span><span class="p">,</span> <span class="n">test_tree</span>
 </pre></div>
 
      </div>
@@ -29732,12 +29736,12 @@ z
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;computer_2017&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;combined_hs_bachelors_2017&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
 <span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
-<span class="n">y_train_tree</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">y_test_tree</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">y_test_pred</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
-<span class="n">acc_train_tree</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="n">acc_test_tree</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="n">acc_train_tree</span><span class="p">,</span> <span class="n">acc_test_tree</span>
+<span class="n">train_tree</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">test_tree</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">train_tree</span><span class="p">,</span> <span class="n">test_tree</span>
 </pre></div>
 
      </div>
@@ -29779,13 +29783,12 @@ z
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;persons_per_household_2017&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;combined_hs_bachelors_2017&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
 <span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
-<span class="n">y_train_tree</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="n">y_test_tree</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">y_test_pred</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
-
-<span class="n">acc_train_tree</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="n">acc_test_tree</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="n">acc_train_tree</span><span class="p">,</span> <span class="n">acc_test_tree</span>
+<span class="n">train_tree</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">test_tree</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">train_tree</span><span class="p">,</span> <span class="n">test_tree</span>
 </pre></div>
 
      </div>
@@ -29837,6 +29840,26 @@ z
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Upon plotting the factors, we began to see general trends between the Maryland counties plots and the US states plots. The regression lines demonstrated a linear relationship between the median household income and the percentage of households that own a computer and the success of the students. Further analysis in the hypothesis testing had results that continued to support this claim. However, the factor of persons per household was unable to hold up once put to hypothesis testing and machine learning. The overall results demonstrated that specifically household income and availability of a computer impacts a student's ability to learn and that there is a correlation between home situations and academic achievement. There are definitely more household factors that greatly impact the level of academic achivement someone can have that deserve more continual research in the hope to improve the overall educational quality in America. In conclusion, we can see that some, not all, household factors do significantly impact the educational achievement and this can be explained by the increase in cost of living and technological use in the educational system.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>If you wish to learn more about the data science and create a project like this in the future, you can utilize the following resources to learn more about what data science truly encompasses and the specific algorithms used in data science and in this tutorial:</p>
+<ol>
+<li><p>Data Science --&gt; <a href="https://www.thinkful.com/blog/what-is-data-science/">https://www.thinkful.com/blog/what-is-data-science/</a></p>
+</li>
+<li><p>Linear Regression --&gt; <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html">https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html</a></p>
+</li>
+<li><p>Ordinary Least Squares --&gt; <a href="https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.OLS.html">https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.OLS.html</a></p>
+</li>
+</ol>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>We hope you learned a lot and enjoyed this tutorial on utilizing the data science pipeline to make data meaningful!</p>
 
 </div>
 </div>
