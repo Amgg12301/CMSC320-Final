@@ -14275,7 +14275,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Source">Source<a class="anchor-link" href="#Source">&#182;</a></h3>
+<h3 id="Data-Source">Data Source<a class="anchor-link" href="#Data-Source">&#182;</a></h3>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -14290,6 +14290,29 @@ a.anchor-link {
 <li><p>Census Bureau.</p>
 </li>
 <li><p>2012-16 American Community Survey 5-yr average.</p>
+</li>
+</ol>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Libraries-Used">Libraries Used<a class="anchor-link" href="#Libraries-Used">&#182;</a></h3>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>In this tutorial, we used the following libraries in Python:</p>
+<ol>
+<li><p>Pandas --&gt; Store and organize larger data (<a href="https://pandas.pydata.org">https://pandas.pydata.org</a>)</p>
+</li>
+<li><p>Matplotlib --&gt; Visualize data in various forms (<a href="https://matplotlib.org">https://matplotlib.org</a>)</p>
+</li>
+<li><p>NumPy --&gt; Store and organize smaller data (<a href="https://numpy.org">https://numpy.org</a>)</p>
+</li>
+<li><p>Scikit-Learn --&gt; Utilize machine learning tools (<a href="https://scikit-learn.org/stable/">https://scikit-learn.org/stable/</a>)</p>
+</li>
+<li><p>Statsmodels --&gt; Utilize statistical models (<a href="https://www.statsmodels.org/stable/index.html">https://www.statsmodels.org/stable/index.html</a>)</p>
 </li>
 </ol>
 
@@ -14317,6 +14340,7 @@ a.anchor-link {
 
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;mode.chained_assignment&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
+<span class="c1"># read data from csv</span>
 <span class="n">county_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/Amgg12301/CMSC320-Final/main/county_complete.csv&quot;</span><span class="p">)</span>
 <span class="n">county_data</span>
 </pre></div>
@@ -14663,7 +14687,8 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">county_data</span><span class="p">[[</span><span class="s2">&quot;fips&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;median_household_income_2017&quot;</span><span class="p">,</span> <span class="s2">&quot;computer_2017&quot;</span><span class="p">,</span> <span class="s2">&quot;persons_per_household_2017&quot;</span><span class="p">,</span> <span class="s2">&quot;hs_grad_2017&quot;</span><span class="p">,</span> <span class="s2">&quot;bachelors_2017&quot;</span><span class="p">]]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># select necessary columns and put into new dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">county_data</span><span class="p">[[</span><span class="s2">&quot;fips&quot;</span><span class="p">,</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;median_household_income_2017&quot;</span><span class="p">,</span> <span class="s2">&quot;computer_2017&quot;</span><span class="p">,</span> <span class="s2">&quot;persons_per_household_2017&quot;</span><span class="p">,</span> <span class="s2">&quot;hs_grad_2017&quot;</span><span class="p">,</span> <span class="s2">&quot;bachelors_2017&quot;</span><span class="p">]]</span>
 <span class="n">df</span>
 </pre></div>
 
@@ -14852,21 +14877,29 @@ a.anchor-link {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>The data in this table represents:</p>
 <ol>
-<li>fips: FIPS codes that represent geographic areas</li>
-<li>state: The state that the county is in</li>
-<li>name: The county being represented</li>
-<li>median_household_income_2017: This represents the median household income in 2017</li>
-<li>computer_2017: This represents the percentage of households that own a computer in 2017</li>
-<li>persons_per_household_2017: This represents the average number of people per household in 2017</li>
-<li>hs_grad_2017: This represents the percentage of people that is a high school graduate in 2017</li>
-<li>bachelors_2017: This represents the percentage of people that has a bachelor's degree in 2017</li>
+<li><p>fips: FIPS codes that represent geographic areas</p>
+</li>
+<li><p>state: The state that the county is in</p>
+</li>
+<li><p>name: The county within the state</p>
+</li>
+<li><p>median_household_income_2017: This represents the median household income in 2017</p>
+</li>
+<li><p>computer_2017: This represents the percentage of households that own a computer in 2017</p>
+</li>
+<li><p>persons_per_household_2017: This represents the average number of people per household in 2017</p>
+</li>
+<li><p>hs_grad_2017: This represents the percentage of people that is a high school graduate in 2017</p>
+</li>
+<li><p>bachelors_2017: This represents the percentage of people that has a bachelor's degree in 2017</p>
+</li>
 </ol>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Now, let's go ahead and replace any missing values in the five important columns of the dataset with the average of the respective variable for the entire dataset.</p>
+<p>Now, let's go ahead and replace any missing values in the five important columns (median household income, access to a computer, persons per household, high school graduation rate, bachelors degree graduation rate) of the dataset with the average of the respective variable for the entire dataset. These are the most important columns in our dataset as the first three are our household factors and the last two are related to educational achievement.</p>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
@@ -14874,12 +14907,14 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">temp_average_income</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;median_household_income_2017&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;median_household_income_2017&#39;</span><span class="p">]),</span> <span class="mi">0</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># calculate averages for each variable</span>
+<span class="n">temp_average_income</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;median_household_income_2017&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;median_household_income_2017&#39;</span><span class="p">]),</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">temp_average_computer</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;computer_2017&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;computer_2017&#39;</span><span class="p">]),</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">temp_average_bachelors</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;bachelors_2017&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;bachelors_2017&#39;</span><span class="p">]),</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">temp_average_hs_grad</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;hs_grad_2017&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;hs_grad_2017&#39;</span><span class="p">]),</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">temp_average_persons</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;persons_per_household_2017&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;persons_per_household_2017&#39;</span><span class="p">]),</span> <span class="mi">0</span><span class="p">)</span>
 
+<span class="c1"># use appropriate average to replace each missing value</span>
 <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;median_household_income_2017&#39;</span><span class="p">]):</span>
         <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;median_household_income_2017&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp_average_income</span>
@@ -14896,6 +14931,7 @@ a.anchor-link {
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;persons_per_household_2017&#39;</span><span class="p">]):</span>
         <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;persons_per_household_2017&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp_average_persons</span>
 
+<span class="c1"># verify no missing values anymore</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;median_household_income_2017&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">any</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;computer_2017&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">any</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;bachelors_2017&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">any</span><span class="p">())</span>
@@ -14942,7 +14978,7 @@ False
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>We define educational achievement to be high school graduation rate and bachelors degree graduation rate. In order to visualize the relationship between household factors and education achievement, we decided to combine these two graduation rates into one variable. This was done by taking the average of the two graduation rates and adding to a new column in the dataframe, which is a new variable the represents the combination of the high school and bachelors degree graduation rates. As a result, it is far easier to visualize the relationships given we only have one y (dependent) varaible now.</p>
+<p>We define educational achievement to be high school graduation rate and bachelors degree graduation rate. In order to visualize the relationship between household factors and education achievement, we decided to combine these two graduation rates into one variable. This was done by taking the average of the two graduation rates and adding to a new column in the dataframe, which is a new variable the represents the combination of the high school and bachelors degree graduation rates. As a result, it is far easier to visualize the relationships given we only have one y (dependent) variable now.</p>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
@@ -14950,7 +14986,8 @@ False
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;combined_hs_bachelors_2017&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;hs_grad_2017&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;bachelors_2017&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># educational achievement = average of high school and bachelors degree graduation rates</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;combined_hs_bachelors_2017&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;hs_grad_2017&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;bachelors_2017&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
 <span class="n">df</span>
 </pre></div>
 
@@ -15173,7 +15210,8 @@ False
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 
 <span class="c1"># create the scatter plot</span>
-<span class="c1"># get average of factors for each states to plot</span>
+<span class="c1"># get average of factors for each state to plot</span>
+<span class="c1"># plot each state and annotate accordinly on plot</span>
 <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">states</span><span class="p">:</span>
     <span class="n">average_income</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">state</span><span class="p">][</span><span class="s1">&#39;median_household_income_2017&#39;</span><span class="p">]</span>
     <span class="n">average_income</span> <span class="o">=</span> <span class="n">average_income</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">average_income</span><span class="p">)</span>
@@ -23498,7 +23536,7 @@ z
 <span class="n">state</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="s1">&#39;Maryland&#39;</span><span class="p">]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;median_household_income_2017&#39;</span><span class="p">],</span> <span class="n">state</span><span class="p">[</span><span class="s1">&#39;combined_hs_bachelors_2017&#39;</span><span class="p">])</span>
 
-<span class="c1"># annotate for each county in Maryland</span>
+<span class="c1"># annotate for each county in Maryland on plot</span>
 <span class="k">for</span> <span class="n">county</span> <span class="ow">in</span> <span class="n">state</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]:</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="n">state</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">county</span><span class="p">][</span><span class="s1">&#39;median_household_income_2017&#39;</span><span class="p">]</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="n">state</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">county</span><span class="p">][</span><span class="s1">&#39;combined_hs_bachelors_2017&#39;</span><span class="p">]</span>
@@ -23506,7 +23544,7 @@ z
     <span class="n">county</span> <span class="o">=</span> <span class="n">county</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;County&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">county</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
 
-<span class="c1"># Create and fit a linear regression line</span>
+<span class="c1"># create, fit, and visualize a linear regression line</span>
 <span class="n">regr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
 <span class="n">regr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;median_household_income_2017&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">state</span><span class="p">[</span><span class="s1">&#39;combined_hs_bachelors_2017&#39;</span><span class="p">])</span> 
 <span class="n">predictions</span> <span class="o">=</span> <span class="n">regr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;median_household_income_2017&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
@@ -29650,6 +29688,7 @@ z
 <span class="n">y_train_tree</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">y_test_tree</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
+<span class="c1"># get r-squared values for training and testing datasets</span>
 <span class="n">acc_train_tree</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">acc_test_tree</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y_test</span><span class="p">)</span>
 <span class="n">acc_train_tree</span><span class="p">,</span> <span class="n">acc_test_tree</span>
